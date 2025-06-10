@@ -104,3 +104,25 @@ The Docling Serve codebase is under MIT license.
 ## IBM ❤️ Open Source AI
 
 Docling has been brought to you by IBM.
+
+## Commands for local setup
+
+```bash
+# 1. Install uv package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 2. Add uv to PATH (for current session)
+source $HOME/.local/bin/env
+
+# 3. Navigate to project directory (if not already there)
+cd docling-serve
+
+# 4. Install base dependencies with UI and GPU support
+uv sync --extra ui --extra cu124
+
+# 5. Install flash-attention (for GPU optimization)
+source .venv/bin/activate && uv pip install flash-attn --no-build-isolation
+
+# 6. Start the development server
+source .venv/bin/activate && docling-serve dev --host 0.0.0.0 --port 5001
+```
